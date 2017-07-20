@@ -32,7 +32,7 @@ import org.apache.cordova.disablehomebutton.HomeKeyLocker;
 
 public class DisableHomeButton extends CordovaPlugin {
 	
-	private HomeKeyLocker mHomeKeyLocker;
+	//private HomeKeyLocker mHomeKeyLocker;
     public static final String TAG = "disablehomebutton";
 
     public boolean execute(String action, JSONArray args, CallbackContext callbackContext) throws JSONException {

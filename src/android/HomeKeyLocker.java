@@ -36,7 +36,7 @@ public class HomeKeyLocker {
     private static class OverlayDialog extends AlertDialog {
 
         public OverlayDialog(Activity activity) {
-            //super(activity, R.style.OverlayDialog);
+            super(activity, R.style.OverlayDialog);
             WindowManager.LayoutParams params = getWindow().getAttributes();
             params.type = TYPE_SYSTEM_ERROR;
             params.dimAmount = 0.0F; // transparent
