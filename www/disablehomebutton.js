@@ -32,14 +32,4 @@ disablehomebutton.StartEnableHomeButton = function(successCallback, errorCallbac
     exec(successCallback, errorCallback, "DisableHomeButton", "EnableButton", [options]);
 };
 
-/*
-var disablehomebutton = {
-    StartDisableHomeButton : function(successCallback, errorCallback, options) {
-        exec(successCallback, errorCallback, "DisableHomeButton", "DisableButton", [options]);
-    },
-	StartEnableHomeButton : function(successCallback, errorCallback, options) {
-        exec(successCallback, errorCallback, "DisableHomeButton", "EnableButton", [options]);
-    }
-};
-*/
 module.exports = disablehomebutton;
