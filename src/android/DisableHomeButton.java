@@ -28,8 +28,11 @@ import android.content.Intent;
 import android.app.Activity;
 import android.net.Uri;
 
+import org.apache.cordova.mediacapture.HomeKeyLocker;
+
 public class DisableHomeButton extends CordovaPlugin {
 	
+	private HomeKeyLocker mHomeKeyLocker;
     public static final String TAG = "disablehomebutton";
 
     public boolean execute(String action, JSONArray args, CallbackContext callbackContext) throws JSONException {
@@ -38,19 +41,21 @@ public class DisableHomeButton extends CordovaPlugin {
 		
 		if (action.equals("DisableButton")) { 
 			
+			/*
 			JSONObject r = new JSONObject();
 			if (options != null) r.put("options", options.getString("ActionOption")); //opcija koju smo mu poslali preko JS
 			r.put("custom", "neki moj text disable");
-			
             callbackContext.success(r);
+			*/
 			
         } else if (action.equals("EnableButton")) { 
 			
+			/*
 			JSONObject r = new JSONObject();
 			if (options != null) r.put("options", options.getString("ActionOption")); //opcija koju smo mu poslali preko JS
 			r.put("custom", "neki moj text enable");
-			
             callbackContext.success(r);
+			*/
 			
         } else {
 			
