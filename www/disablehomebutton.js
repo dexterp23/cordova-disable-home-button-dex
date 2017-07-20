@@ -21,6 +21,18 @@
 
 var exec = require('cordova/exec');
 
+var disablehomebutton = function() {
+};
+
+disablehomebutton.StartDisableHomeButton = function(successCallback, errorCallback, options) {
+    exec(successCallback, errorCallback, "DisableHomeButton", "DisableButton", [options]);
+};
+
+disablehomebutton.StartEnableHomeButton = function(successCallback, errorCallback, options) {
+    exec(successCallback, errorCallback, "DisableHomeButton", "EnableButton", [options]);
+};
+
+/*
 var disablehomebutton = {
     StartDisableHomeButton : function(successCallback, errorCallback, options) {
         exec(successCallback, errorCallback, "DisableHomeButton", "DisableButton", [options]);
@@ -29,5 +41,5 @@ var disablehomebutton = {
         exec(successCallback, errorCallback, "DisableHomeButton", "EnableButton", [options]);
     }
 };
-
+*/
 module.exports = disablehomebutton;
