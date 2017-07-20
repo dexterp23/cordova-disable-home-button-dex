@@ -54,7 +54,7 @@ public class DisableHomeButton extends CordovaPlugin {
 			JSONObject r = new JSONObject();
 			if (options != null) r.put("options", options.getString("Action")); //opcija koju smo mu poslali preko JS
             r.put("custom", "neki moj text");
-            r.put("model", this.getModel());
+            //r.put("model", this.getModel());
 			
 			
             callbackContext.success(r);

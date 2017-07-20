@@ -24,7 +24,6 @@ xmlns:rim="http://www.blackberry.com/ns/widgets"
            id="cordova-disable-home-button-dex"
       version="0.0.1">
     <name>Disable Home Button</name>
-
     <description>Disable Home Button</description>
 	
 	<js-module src="www/disablehomebutton.js" name="disablehomebutton">
