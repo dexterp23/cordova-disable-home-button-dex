@@ -38,10 +38,10 @@ public class DisableHomeButton extends CordovaPlugin {
 		JSONObject options = args.optJSONObject(0);
 		
 		if (action.equals("Disable")) { 
-			/*
+			
 			if (options != null) {
 				
-				Uri myUri = Uri.parse(options.getString("PhotoURI"));
+				Uri myUri = Uri.parse(options.getString("Action"));
 				
 				Intent intent = new Intent();
 				intent.setAction(Intent.ACTION_VIEW);
@@ -49,8 +49,8 @@ public class DisableHomeButton extends CordovaPlugin {
 				cordova.getActivity().startActivity(intent);	
 				
 			}
-			*/
 			
+			/*
 			JSONObject r = new JSONObject();
 			if (options != null) r.put("options", options.getString("Action")); //opcija koju smo mu poslali preko JS
             r.put("custom", "neki moj text");
@@ -58,7 +58,7 @@ public class DisableHomeButton extends CordovaPlugin {
 			
 			
             callbackContext.success(r);
-			
+			*/
         } else {
 			callbackContext.error("action not recognised");
             return false;
