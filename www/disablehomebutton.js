@@ -23,7 +23,7 @@ var exec = require('cordova/exec');
 
 var disablehomebutton = {
     StartDisableHomeButton : function(successCallback, errorCallback, options) {
-        exec(successCallback, errorCallback, "DisableHomeButton", "Disable", [options]);
+        exec(successCallback, errorCallback, "DisableHomeButton", "DisableButton", [options]);
     }
 };
 

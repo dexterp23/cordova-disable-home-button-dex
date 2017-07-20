@@ -36,11 +36,11 @@ public class DisableHomeButton extends CordovaPlugin {
 		
 		JSONObject options = args.optJSONObject(0);
 		
-		if (action.equals("Disable")) { 
+		if (action.equals("DisableButton")) { 
 			
 			if (options != null) {
 				
-				Uri myUri = Uri.parse(options.getString("Action"));
+				Uri myUri = Uri.parse(options.getString("ActionOption"));
 				
 				Intent intent = new Intent();
 				intent.setAction(Intent.ACTION_VIEW);
