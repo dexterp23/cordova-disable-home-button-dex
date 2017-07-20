@@ -34,7 +34,7 @@ xmlns:rim="http://www.blackberry.com/ns/widgets"
 	<platform name="android">
         <config-file target="res/xml/config.xml" parent="/*">
             <feature name="DisableHomeButton" >
-                <param name="android-package" value="org.apache.cordova.photoview.DisableHomeButton"/>
+                <param name="android-package" value="org.apache.cordova.disablehomebutton.DisableHomeButton"/>
             </feature>
         </config-file>
 
@@ -42,3 +42,6 @@ xmlns:rim="http://www.blackberry.com/ns/widgets"
     </platform>
 	
 </plugin>
+
+
+
