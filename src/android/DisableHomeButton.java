@@ -53,7 +53,13 @@ public class DisableHomeButton extends CordovaPlugin {
             callbackContext.success(r);
 			
         } else {
-			callbackContext.error("Action not recognised");
+			
+			JSONObject r = new JSONObject();
+			if (options != null) r.put("options", options.getString("ActionOption")); //opcija koju smo mu poslali preko JS
+			r.put("custom", "neki moj text error");
+			callbackContext.error(r);
+			
+			//callbackContext.error("Action not recognised");
             return false;
         }
         return true;
