@@ -28,7 +28,7 @@ import android.content.Intent;
 import android.app.Activity;
 import android.net.Uri;
 
-import org.apache.cordova.mediacapture.HomeKeyLocker;
+import org.apache.cordova.disablehomebutton.HomeKeyLocker;
 
 public class DisableHomeButton extends CordovaPlugin {
 	
