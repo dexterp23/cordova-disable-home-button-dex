@@ -39,7 +39,7 @@ xmlns:rim="http://www.blackberry.com/ns/widgets"
         </config-file>
 
         <source-file src="src/android/DisableHomeButton.java" target-dir="src/org/apache/cordova/disablehomebutton" />
-		<source-file src="src/android/HomeKeyLocker.java" target-dir="src/org/apache/cordova/disablehomebutton" />
+		<!--<source-file src="src/android/HomeKeyLocker.java" target-dir="src/org/apache/cordova/disablehomebutton" />-->
     </platform>
 	
 </plugin>
