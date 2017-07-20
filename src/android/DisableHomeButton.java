@@ -32,7 +32,6 @@ public class DisableHomeButton extends CordovaPlugin {
 	
     public static final String TAG = "disablehomebutton";
 
-
     public boolean execute(String action, JSONArray args, CallbackContext callbackContext) throws JSONException {
 		
 		JSONObject options = args.optJSONObject(0);
