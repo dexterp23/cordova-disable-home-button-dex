@@ -68,12 +68,13 @@ public class DisableHomeButton extends CordovaPlugin {
 				//disablePullNotificationTouch(); //zatvara notification bar
 				HomeKeyLocker_Lock(); //zatvara home dugme
 			}
-
+			
+			/*
 			JSONObject r = new JSONObject();
 			if (options != null) r.put("options", options.getString("ActionOption")); //opcija koju smo mu poslali preko JS
 			r.put("custom", "neki moj text disable");
             callbackContext.success(r);
-			
+			*/
 			
         } else if (action.equals("EnableButton")) { 
 			
@@ -84,12 +85,13 @@ public class DisableHomeButton extends CordovaPlugin {
 				//enablePullNotificationTouch(); //otvara notification bar
 				HomeKeyLocker_UnLock(); //otvara home dugme
 			}
-				
+			
+			/*
 			JSONObject r = new JSONObject();
 			if (options != null) r.put("options", options.getString("ActionOption")); //opcija koju smo mu poslali preko JS
 			r.put("custom", "neki moj text enable");
             callbackContext.success(r);
-			
+			*/
 			
         } else {
 			
@@ -111,13 +113,15 @@ public class DisableHomeButton extends CordovaPlugin {
 	
 	/* HOME BUTTON */
 	public void HomeKeyLocker_Lock () {
-		 
+		
+		Log.i(TAG, String.valueOf("HomeKeyLocker_Lock"));
 		mHomeKeyLocker.lock(this.cordova.getActivity()); 
 		 
 	}
 	
 	public void HomeKeyLocker_UnLock () {
-		 
+		
+		Log.i(TAG, String.valueOf("HomeKeyLocker_UnLock")); 
 		mHomeKeyLocker.unlock();
 		 
 	}
