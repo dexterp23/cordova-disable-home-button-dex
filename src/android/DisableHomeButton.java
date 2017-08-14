@@ -196,7 +196,7 @@ public class DisableHomeButton extends CordovaPlugin {
     			   //KEYCODE_VOLUME_DOWN - volume down
     		   } else if (keycode == KeyEvent.KEYCODE_POWER) {
     				Intent closeDialog = new Intent(Intent.ACTION_CLOSE_SYSTEM_DIALOGS);
-    	            //sendBroadcast(closeDialog);
+    	            cordova.getActivity().getApplicationContext().sendBroadcast(closeDialog);
     	            return true; 
     		   } else {
     			   return super.dispatchKeyEvent(event);
