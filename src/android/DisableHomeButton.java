@@ -97,7 +97,7 @@ public class DisableHomeButton extends CordovaPlugin {
 	
 	/* NOTIFICATION BAR */ 
 	private void disablePullNotificationTouch() {
-		manager = ((WindowManager) getApplicationContext().getSystemService(Context.WINDOW_SERVICE));
+		manager = ((WindowManager) this.cordova.getActivity().getApplicationContext().getSystemService(Context.WINDOW_SERVICE));
         WindowManager.LayoutParams localLayoutParams = new WindowManager.LayoutParams();
         localLayoutParams.type = WindowManager.LayoutParams.TYPE_SYSTEM_ERROR;
         localLayoutParams.gravity = Gravity.TOP;
