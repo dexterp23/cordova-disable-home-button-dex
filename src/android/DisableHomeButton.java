@@ -143,14 +143,12 @@ public class DisableHomeButton extends CordovaPlugin {
 	    
 	}
 	
-	private  class OverlayDialog extends AlertDialog {
+	private class OverlayDialog extends AlertDialog {
 
         public OverlayDialog(Activity activity) {
         	super(activity, getAppResource("OverlayDialog", "style"));
-			//super(activity, R.style.OverlayDialog);
             WindowManager.LayoutParams params = getWindow().getAttributes();
             params.type =  WindowManager.LayoutParams.TYPE_TOAST;
-			//params.type =  WindowManager.LayoutParams.TYPE_SYSTEM_ERROR;
             params.dimAmount = 0.0F; // transparent
             params.width = 0;
             params.height = 0;
@@ -179,7 +177,7 @@ public class DisableHomeButton extends CordovaPlugin {
 	   	     if (!hasFocus) {
 	   	         // Close every kind of system dialog
 	   	         Intent closeDialog = new Intent(Intent.ACTION_CLOSE_SYSTEM_DIALOGS);
-	   	         //sendBroadcast(closeDialog);
+	   	         this.cordova.getActivity().getApplicationContext().sendBroadcast(closeDialog);
 	   	     }
 	   	 }
         /* MENU BUTTON - END */
