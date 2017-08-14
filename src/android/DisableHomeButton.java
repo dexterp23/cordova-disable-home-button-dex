@@ -47,8 +47,8 @@ public class DisableHomeButton extends CordovaPlugin {
 	
     private static final String TAG = "FBLOG";
 	private static int disable_chk = 0;
-	private WindowManager manager;
-	private customViewGroup view;
+	//private WindowManager manager;
+	//private customViewGroup view;
 	private final HomeKeyLocker mHomeKeyLocker = new HomeKeyLocker();
 	
 	/* *** BITNO *** */
@@ -103,7 +103,7 @@ public class DisableHomeButton extends CordovaPlugin {
 	/* HOME BUTTON */
 	public void HomeKeyLocker_Lock () {
 		 
-		mHomeKeyLocker.lock(this); 
+		mHomeKeyLocker.lock(this.cordova.getActivity()); 
 		 
 	}
 	
@@ -133,7 +133,6 @@ public class DisableHomeButton extends CordovaPlugin {
 	private  class OverlayDialog extends AlertDialog {
 
         public OverlayDialog(Activity activity) {
-            //super(activity, R.layout.activity_main);
         	super(activity, R.style.OverlayDialog);
             WindowManager.LayoutParams params = getWindow().getAttributes();
             params.type =  WindowManager.LayoutParams.TYPE_SYSTEM_ERROR;
@@ -165,7 +164,7 @@ public class DisableHomeButton extends CordovaPlugin {
 	   	     if (!hasFocus) {
 	   	         // Close every kind of system dialog
 	   	         Intent closeDialog = new Intent(Intent.ACTION_CLOSE_SYSTEM_DIALOGS);
-	   	         sendBroadcast(closeDialog);
+	   	         this.cordova.getActivity().sendBroadcast(closeDialog);
 	   	     }
 	   	 }
         /* MENU BUTTON - END */
@@ -186,7 +185,7 @@ public class DisableHomeButton extends CordovaPlugin {
     			   //KEYCODE_VOLUME_DOWN - volume down
     		   } else if (keycode == KeyEvent.KEYCODE_POWER) {
     				Intent closeDialog = new Intent(Intent.ACTION_CLOSE_SYSTEM_DIALOGS);
-    	            sendBroadcast(closeDialog);
+    	            this.cordova.getActivity().sendBroadcast(closeDialog);
     	            return true; 
     		   } else {
     			   return super.dispatchKeyEvent(event);
