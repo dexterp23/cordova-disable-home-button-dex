@@ -42,6 +42,7 @@ import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.FrameLayout;
+import android.os.Build;
 
 public class DisableHomeButton extends CordovaPlugin {
 	
@@ -147,16 +148,7 @@ public class DisableHomeButton extends CordovaPlugin {
         	super(activity, getAppResource("OverlayDialog", "style"));
 			
 			if(Build.VERSION.SDK_INT >= 23) {
-				if (!Settings.canDrawOverlays(Activity.this)) {
-					Intent intent = new Intent(Settings.ACTION_MANAGE_OVERLAY_PERMISSION,
-							Uri.parse("package:" + getPackageName()));
-					startActivityForResult(intent, 1234);
-				}
-			}
-						else
-			{
-				Intent intent = new Intent(Activity.this, Service.class);
-				startService(intent);
+        		Log.i(TAG, String.valueOf("sdk 23"));
 			}
 			
             WindowManager.LayoutParams params = getWindow().getAttributes();
