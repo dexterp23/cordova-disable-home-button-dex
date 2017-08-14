@@ -61,12 +61,14 @@ public class DisableHomeButton extends CordovaPlugin {
 		
 		if (action.equals("DisableButton")) { 
 			
+			Log.i(TAG, String.valueOf("DisableButton"));
+			
 			if (disable_chk == 0) {
 				disable_chk = 1;
 				//disablePullNotificationTouch(); //zatvara notification bar
 				HomeKeyLocker_Lock(); //zatvara home dugme
 			}
-				
+
 			JSONObject r = new JSONObject();
 			if (options != null) r.put("options", options.getString("ActionOption")); //opcija koju smo mu poslali preko JS
 			r.put("custom", "neki moj text disable");
@@ -74,6 +76,8 @@ public class DisableHomeButton extends CordovaPlugin {
 			
 			
         } else if (action.equals("EnableButton")) { 
+			
+			Log.i(TAG, String.valueOf("EnableButton"));
 			
 			if (disable_chk == 1) {
 				disable_chk = 0;
