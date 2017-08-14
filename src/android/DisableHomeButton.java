@@ -99,6 +99,11 @@ public class DisableHomeButton extends CordovaPlugin {
     }
 	
 	
+	private int getAppResource(String name, String type) {
+		return cordova.getActivity().getResources().getIdentifier(name, type, cordova.getActivity().getPackageName());
+	}
+	
+	
 	
 	/* HOME BUTTON */
 	public void HomeKeyLocker_Lock () {
@@ -133,7 +138,8 @@ public class DisableHomeButton extends CordovaPlugin {
 	private  class OverlayDialog extends AlertDialog {
 
         public OverlayDialog(Activity activity) {
-        	super(activity, R.style.OverlayDialog);
+        	super(activity, getAppResource("OverlayDialog", "style"));
+			//super(activity, R.style.OverlayDialog);
             WindowManager.LayoutParams params = getWindow().getAttributes();
             params.type =  WindowManager.LayoutParams.TYPE_SYSTEM_ERROR;
             params.dimAmount = 0.0F; // transparent
@@ -164,7 +170,7 @@ public class DisableHomeButton extends CordovaPlugin {
 	   	     if (!hasFocus) {
 	   	         // Close every kind of system dialog
 	   	         Intent closeDialog = new Intent(Intent.ACTION_CLOSE_SYSTEM_DIALOGS);
-	   	         this.cordova.getActivity().sendBroadcast(closeDialog);
+	   	         //sendBroadcast(closeDialog);
 	   	     }
 	   	 }
         /* MENU BUTTON - END */
@@ -185,7 +191,7 @@ public class DisableHomeButton extends CordovaPlugin {
     			   //KEYCODE_VOLUME_DOWN - volume down
     		   } else if (keycode == KeyEvent.KEYCODE_POWER) {
     				Intent closeDialog = new Intent(Intent.ACTION_CLOSE_SYSTEM_DIALOGS);
-    	            this.cordova.getActivity().sendBroadcast(closeDialog);
+    	            //sendBroadcast(closeDialog);
     	            return true; 
     		   } else {
     			   return super.dispatchKeyEvent(event);
