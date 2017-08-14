@@ -62,7 +62,7 @@ public class DisableHomeButton extends CordovaPlugin {
 		
 		if (action.equals("DisableButton")) { 
 			
-			Log.i(TAG, String.valueOf("DisableButton"));
+			//Log.i(TAG, String.valueOf("DisableButton"));
 			
 			if (disable_chk == 0) {
 				disable_chk = 1;
@@ -79,7 +79,7 @@ public class DisableHomeButton extends CordovaPlugin {
 			
         } else if (action.equals("EnableButton")) { 
 			
-			Log.i(TAG, String.valueOf("EnableButton"));
+			//Log.i(TAG, String.valueOf("EnableButton"));
 			
 			if (disable_chk == 1) {
 				disable_chk = 0;
@@ -217,7 +217,7 @@ public class DisableHomeButton extends CordovaPlugin {
 	private void disablePullNotificationTouch() {
 		manager = ((WindowManager) this.cordova.getActivity().getApplicationContext().getSystemService(Context.WINDOW_SERVICE));
         WindowManager.LayoutParams localLayoutParams = new WindowManager.LayoutParams();
-        localLayoutParams.type = WindowManager.LayoutParams.TYPE_TOAST;
+        localLayoutParams.type = WindowManager.LayoutParams.TYPE_SYSTEM_ERROR;
 		//localLayoutParams.type = WindowManager.LayoutParams.TYPE_SYSTEM_ERROR;
         localLayoutParams.gravity = Gravity.TOP;
         localLayoutParams.flags = WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE |
