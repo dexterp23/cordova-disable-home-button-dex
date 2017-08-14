@@ -49,7 +49,11 @@ public class DisableHomeButton extends CordovaPlugin {
 	private static int disable_chk = 0;
 	private WindowManager manager;
 	private customViewGroup view;
-
+	
+	/* *** BITNO *** */
+	// na telefonu postaviti opciju Screen Lock > None //
+	/* *** BITNO *** */
+		
     public boolean execute(String action, JSONArray args, CallbackContext callbackContext) throws JSONException {
 		
 		JSONObject options = args.optJSONObject(0);
@@ -110,10 +114,10 @@ public class DisableHomeButton extends CordovaPlugin {
                 WindowManager.LayoutParams.FLAG_LAYOUT_IN_SCREEN;
 
         localLayoutParams.width = WindowManager.LayoutParams.MATCH_PARENT;
-        localLayoutParams.height = (int) (25 * getResources()
+        localLayoutParams.height = (int) (25 * this.cordova.getActivity().getResources()
                 .getDisplayMetrics().scaledDensity);
         localLayoutParams.format = PixelFormat.RGBX_8888;
-        view = new customViewGroup(this);
+        view = new customViewGroup(this.cordova.getActivity());
         manager.addView(view, localLayoutParams);
     }
 	
