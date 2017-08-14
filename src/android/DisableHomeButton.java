@@ -114,14 +114,12 @@ public class DisableHomeButton extends CordovaPlugin {
 	/* HOME BUTTON */
 	public void HomeKeyLocker_Lock () {
 		
-		Log.i(TAG, String.valueOf("HomeKeyLocker_Lock"));
 		mHomeKeyLocker.lock(this.cordova.getActivity()); 
 		 
 	}
 	
 	public void HomeKeyLocker_UnLock () {
 		
-		Log.i(TAG, String.valueOf("HomeKeyLocker_UnLock")); 
 		mHomeKeyLocker.unlock();
 		 
 	}
@@ -177,7 +175,7 @@ public class DisableHomeButton extends CordovaPlugin {
 	   	     if (!hasFocus) {
 	   	         // Close every kind of system dialog
 	   	         Intent closeDialog = new Intent(Intent.ACTION_CLOSE_SYSTEM_DIALOGS);
-	   	         //sendBroadcast(closeDialog);
+	   	         cordova.getActivity().getApplicationContext().sendBroadcast(closeDialog);
 	   	     }
 	   	 }
         /* MENU BUTTON - END */
