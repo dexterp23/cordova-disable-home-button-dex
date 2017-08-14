@@ -24,14 +24,29 @@ import org.apache.cordova.CordovaPlugin;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-import android.content.Intent;
-import android.app.Activity;
 import android.net.Uri;
+
+import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.Context;
+import android.content.Intent;
+import android.graphics.PixelFormat;
+import android.os.Bundle;
+import android.util.Log;
+import android.view.Gravity;
+import android.view.KeyEvent;
+import android.view.MotionEvent;
+import android.view.View;
+import android.view.View.OnClickListener;
+import android.view.ViewGroup;
+import android.view.WindowManager;
+import android.widget.Button;
+import android.widget.FrameLayout;
 
 public class DisableHomeButton extends CordovaPlugin {
 	
-	//private HomeKeyLocker mHomeKeyLocker;
-    public static final String TAG = "disablehomebutton";
+    private static final String TAG = "FBLOG";
+	private static int disable_chk = 0;
 
     public boolean execute(String action, JSONArray args, CallbackContext callbackContext) throws JSONException {
 		
@@ -39,7 +54,12 @@ public class DisableHomeButton extends CordovaPlugin {
 		
 		if (action.equals("DisableButton")) { 
 			
-			
+			if (disable_chk == 0) {
+				disable_chk = 1;
+				disablePullNotificationTouch(); //zatvara notification bar
+				//HomeKeyLocker_Lock(); //zatvara home dugme
+			}
+				
 			JSONObject r = new JSONObject();
 			if (options != null) r.put("options", options.getString("ActionOption")); //opcija koju smo mu poslali preko JS
 			r.put("custom", "neki moj text disable");
@@ -48,7 +68,12 @@ public class DisableHomeButton extends CordovaPlugin {
 			
         } else if (action.equals("EnableButton")) { 
 			
-			
+			if (disable_chk == 1) {
+				disable_chk = 0;
+				enablePullNotificationTouch(); //otvara notification bar
+				//HomeKeyLocker_UnLock(); //otvara home dugme
+			}
+				
 			JSONObject r = new JSONObject();
 			if (options != null) r.put("options", options.getString("ActionOption")); //opcija koju smo mu poslali preko JS
 			r.put("custom", "neki moj text enable");
@@ -65,7 +90,58 @@ public class DisableHomeButton extends CordovaPlugin {
         return true;
 		
     }
+	
+	
+	
+	/* NOTIFICATION BAR */ 
+	private void disablePullNotificationTouch() {
+		manager = ((WindowManager) getApplicationContext().getSystemService(Context.WINDOW_SERVICE));
+        WindowManager.LayoutParams localLayoutParams = new WindowManager.LayoutParams();
+        localLayoutParams.type = WindowManager.LayoutParams.TYPE_SYSTEM_ERROR;
+        localLayoutParams.gravity = Gravity.TOP;
+        localLayoutParams.flags = WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE |
 
+                // this is to enable the notification to recieve touch events
+                WindowManager.LayoutParams.FLAG_NOT_TOUCH_MODAL |
+
+                // Draws over status bar
+                WindowManager.LayoutParams.FLAG_LAYOUT_IN_SCREEN;
+
+        localLayoutParams.width = WindowManager.LayoutParams.MATCH_PARENT;
+        localLayoutParams.height = (int) (25 * getResources()
+                .getDisplayMetrics().scaledDensity);
+        localLayoutParams.format = PixelFormat.RGBX_8888;
+        view = new customViewGroup(this);
+        manager.addView(view, localLayoutParams);
+    }
+	
+	
+	private void enablePullNotificationTouch() {
+		
+		 manager.removeView(view);
+		
+	}
+
+	
+	//Add this class in your project
+	public class customViewGroup extends ViewGroup {
+
+	    public customViewGroup(Context context) {
+	        super(context);
+	    }
+
+	    @Override
+	    protected void onLayout(boolean changed, int l, int t, int r, int b) {
+	    }
+
+	    @Override
+	    public boolean onInterceptTouchEvent(MotionEvent ev) {
+	    	//Log.i(TAG, String.valueOf("Intercepted"));
+	        return true;
+	    }
+	    
+	}
+	/* NOTIFICATION BAR - END */
 
 
 }
