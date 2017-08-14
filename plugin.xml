@@ -41,7 +41,7 @@ xmlns:rim="http://www.blackberry.com/ns/widgets"
 		<source-file src="src/android/style_value.xml" target-dir="res/values" />
         <source-file src="src/android/DisableHomeButton.java" target-dir="src/org/apache/cordova/disablehomebutton" />
 		
-		<config-file target="AndroidManifest.xml" parent="application">
+		<config-file target="AndroidManifest.xml" parent="/*">
             <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW"/> 
         </config-file>
     </platform>

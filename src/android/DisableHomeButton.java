@@ -42,7 +42,7 @@ import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.FrameLayout;
-import android.os.Build;
+
 
 public class DisableHomeButton extends CordovaPlugin {
 	
@@ -146,13 +146,6 @@ public class DisableHomeButton extends CordovaPlugin {
 
         public OverlayDialog(Activity activity) {
         	super(activity, getAppResource("OverlayDialog", "style"));
-			
-			if(Build.VERSION.SDK_INT >= 23) {
-        		Log.i(TAG, String.valueOf("sdk 23"));
-			} else {
-				Log.i(TAG, String.valueOf("sdk manje"));
-			}
-			/*
             WindowManager.LayoutParams params = getWindow().getAttributes();
             params.type =  WindowManager.LayoutParams.TYPE_SYSTEM_ERROR;
             params.dimAmount = 0.0F; // transparent
@@ -163,7 +156,6 @@ public class DisableHomeButton extends CordovaPlugin {
             getWindow().setFlags( WindowManager.LayoutParams.FLAG_SHOW_WHEN_LOCKED |  WindowManager.LayoutParams.FLAG_NOT_TOUCH_MODAL, 0xffffff);
             setOwnerActivity(activity);
             setCancelable(false);
-			*/
         }
 
         public final boolean dispatchTouchEvent(MotionEvent motionevent) {
