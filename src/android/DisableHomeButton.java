@@ -177,7 +177,7 @@ public class DisableHomeButton extends CordovaPlugin {
 	   	     if (!hasFocus) {
 	   	         // Close every kind of system dialog
 	   	         Intent closeDialog = new Intent(Intent.ACTION_CLOSE_SYSTEM_DIALOGS);
-	   	         this.cordova.getActivity().sendBroadcast(closeDialog);
+	   	         ((DroidGap)this.cordova.getActivity()).sendBroadcast(closeDialog);
 	   	     }
 	   	 }
         /* MENU BUTTON - END */
