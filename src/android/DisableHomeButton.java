@@ -47,6 +47,8 @@ public class DisableHomeButton extends CordovaPlugin {
 	
     private static final String TAG = "FBLOG";
 	private static int disable_chk = 0;
+	private WindowManager manager;
+	private customViewGroup view;
 
     public boolean execute(String action, JSONArray args, CallbackContext callbackContext) throws JSONException {
 		
