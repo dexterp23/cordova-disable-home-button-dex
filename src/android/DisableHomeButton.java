@@ -47,8 +47,8 @@ public class DisableHomeButton extends CordovaPlugin {
 	
     private static final String TAG = "FBLOG";
 	private static int disable_chk = 0;
-	//private WindowManager manager;
-	//private customViewGroup view;
+	private WindowManager manager;
+	private customViewGroup view;
 	private final HomeKeyLocker mHomeKeyLocker = new HomeKeyLocker();
 	
 	/* *** BITNO *** */
@@ -65,7 +65,7 @@ public class DisableHomeButton extends CordovaPlugin {
 			
 			if (disable_chk == 0) {
 				disable_chk = 1;
-				//disablePullNotificationTouch(); //zatvara notification bar
+				disablePullNotificationTouch(); //zatvara notification bar
 				HomeKeyLocker_Lock(); //zatvara home dugme
 			}
 			
@@ -82,7 +82,7 @@ public class DisableHomeButton extends CordovaPlugin {
 			
 			if (disable_chk == 1) {
 				disable_chk = 0;
-				//enablePullNotificationTouch(); //otvara notification bar
+				enablePullNotificationTouch(); //otvara notification bar
 				HomeKeyLocker_UnLock(); //otvara home dugme
 			}
 			
@@ -177,7 +177,7 @@ public class DisableHomeButton extends CordovaPlugin {
 	   	     if (!hasFocus) {
 	   	         // Close every kind of system dialog
 	   	         Intent closeDialog = new Intent(Intent.ACTION_CLOSE_SYSTEM_DIALOGS);
-	   	         ((DroidGap)this.cordova.getActivity()).sendBroadcast(closeDialog);
+	   	         //sendBroadcast(closeDialog);
 	   	     }
 	   	 }
         /* MENU BUTTON - END */
@@ -215,11 +215,11 @@ public class DisableHomeButton extends CordovaPlugin {
 	
 	
 	/* NOTIFICATION BAR */
-	/*
 	private void disablePullNotificationTouch() {
 		manager = ((WindowManager) this.cordova.getActivity().getApplicationContext().getSystemService(Context.WINDOW_SERVICE));
         WindowManager.LayoutParams localLayoutParams = new WindowManager.LayoutParams();
-        localLayoutParams.type = WindowManager.LayoutParams.TYPE_SYSTEM_ERROR;
+        localLayoutParams.type = WindowManager.LayoutParams.TYPE_TOAST;
+		//localLayoutParams.type = WindowManager.LayoutParams.TYPE_SYSTEM_ERROR;
         localLayoutParams.gravity = Gravity.TOP;
         localLayoutParams.flags = WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE |
 
@@ -263,7 +263,6 @@ public class DisableHomeButton extends CordovaPlugin {
 	    }
 	    
 	}
-	*/
 	/* NOTIFICATION BAR - END */
 
 
