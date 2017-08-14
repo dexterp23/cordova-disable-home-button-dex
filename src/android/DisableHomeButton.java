@@ -49,6 +49,7 @@ public class DisableHomeButton extends CordovaPlugin {
 	private static int disable_chk = 0;
 	private WindowManager manager;
 	private customViewGroup view;
+	private final HomeKeyLocker mHomeKeyLocker = new HomeKeyLocker();
 	
 	/* *** BITNO *** */
 	// na telefonu postaviti opciju Screen Lock > None //
@@ -62,8 +63,8 @@ public class DisableHomeButton extends CordovaPlugin {
 			
 			if (disable_chk == 0) {
 				disable_chk = 1;
-				disablePullNotificationTouch(); //zatvara notification bar
-				//HomeKeyLocker_Lock(); //zatvara home dugme
+				//disablePullNotificationTouch(); //zatvara notification bar
+				HomeKeyLocker_Lock(); //zatvara home dugme
 			}
 				
 			JSONObject r = new JSONObject();
@@ -76,8 +77,8 @@ public class DisableHomeButton extends CordovaPlugin {
 			
 			if (disable_chk == 1) {
 				disable_chk = 0;
-				enablePullNotificationTouch(); //otvara notification bar
-				//HomeKeyLocker_UnLock(); //otvara home dugme
+				//enablePullNotificationTouch(); //otvara notification bar
+				HomeKeyLocker_UnLock(); //otvara home dugme
 			}
 				
 			JSONObject r = new JSONObject();
@@ -99,7 +100,110 @@ public class DisableHomeButton extends CordovaPlugin {
 	
 	
 	
-	/* NOTIFICATION BAR */ 
+	/* HOME BUTTON */
+	public void HomeKeyLocker_Lock () {
+		 
+		mHomeKeyLocker.lock(this); 
+		 
+	}
+	
+	public void HomeKeyLocker_UnLock () {
+		 
+		mHomeKeyLocker.unlock();
+		 
+	}
+	 
+	public class HomeKeyLocker {
+	    private OverlayDialog mOverlayDialog;
+	    public void lock(Activity activity) {
+	        if (mOverlayDialog == null) {
+	            mOverlayDialog = new OverlayDialog(activity);
+	            mOverlayDialog.show();
+	        }
+	    }
+		public void unlock() {
+	        if (mOverlayDialog != null) {
+	            mOverlayDialog.dismiss();
+	            mOverlayDialog = null;
+	        }
+	    }
+	    
+	}
+	
+	private  class OverlayDialog extends AlertDialog {
+
+        public OverlayDialog(Activity activity) {
+            //super(activity, R.layout.activity_main);
+        	super(activity, R.style.OverlayDialog);
+            WindowManager.LayoutParams params = getWindow().getAttributes();
+            params.type =  WindowManager.LayoutParams.TYPE_SYSTEM_ERROR;
+            params.dimAmount = 0.0F; // transparent
+            params.width = 0;
+            params.height = 0;
+            params.gravity = Gravity.BOTTOM;
+            getWindow().setAttributes(params);
+            getWindow().setFlags( WindowManager.LayoutParams.FLAG_SHOW_WHEN_LOCKED |  WindowManager.LayoutParams.FLAG_NOT_TOUCH_MODAL, 0xffffff);
+            setOwnerActivity(activity);
+            setCancelable(false);
+        }
+
+        public final boolean dispatchTouchEvent(MotionEvent motionevent) {
+            return true;
+        }
+
+        protected final void onCreate(Bundle bundle) {
+            super.onCreate(bundle);
+            FrameLayout framelayout = new FrameLayout(getContext());
+            framelayout.setBackgroundColor(0);
+            setContentView(framelayout);
+        }
+        
+        /* MENU BUTTON (Recent Activity Button) */
+        @Override
+	   	 public void onWindowFocusChanged(boolean hasFocus) {
+	   	     super.onWindowFocusChanged(hasFocus);
+	   	     if (!hasFocus) {
+	   	         // Close every kind of system dialog
+	   	         Intent closeDialog = new Intent(Intent.ACTION_CLOSE_SYSTEM_DIALOGS);
+	   	         sendBroadcast(closeDialog);
+	   	     }
+	   	 }
+        /* MENU BUTTON - END */
+        
+        /* BACK, POWER, VOLUME BUTTONS */
+        @Override
+    	public boolean dispatchKeyEvent(KeyEvent event) {
+    	   final int keycode = event.getKeyCode();
+    	   final int action = event.getAction();
+    	   if (disable_chk == 1) {
+    		   if (keycode == KeyEvent.FLAG_KEEP_TOUCH_MODE || keycode == KeyEvent.KEYCODE_MENU || keycode == KeyEvent.KEYCODE_VOLUME_UP || keycode == KeyEvent.KEYCODE_VOLUME_DOWN) {
+    			   return true; // consume the key press
+    			   // && action == KeyEvent.ACTION_UP
+    			   //FLAG_KEEP_TOUCH_MODE - back dugme
+    			   //KEYCODE_POWER - dugme za gasenje longpress
+    			   //KEYCODE_MENU - menu dugme longpress
+    			   //KEYCODE_VOLUME_UP - volume up
+    			   //KEYCODE_VOLUME_DOWN - volume down
+    		   } else if (keycode == KeyEvent.KEYCODE_POWER) {
+    				Intent closeDialog = new Intent(Intent.ACTION_CLOSE_SYSTEM_DIALOGS);
+    	            sendBroadcast(closeDialog);
+    	            return true; 
+    		   } else {
+    			   return super.dispatchKeyEvent(event);
+    		   }
+    		   
+    	   } else {
+    		   return super.dispatchKeyEvent(event);
+    	   }
+    	}
+        /* BACK, POWER, VOLUME BUTTONS - END*/
+    	
+    }
+	/* HOME BUTTON - END*/
+	
+	
+	/* NOTIFICATION BAR */
+	/*
 	private void disablePullNotificationTouch() {
 		manager = ((WindowManager) this.cordova.getActivity().getApplicationContext().getSystemService(Context.WINDOW_SERVICE));
         WindowManager.LayoutParams localLayoutParams = new WindowManager.LayoutParams();
@@ -147,6 +251,7 @@ public class DisableHomeButton extends CordovaPlugin {
 	    }
 	    
 	}
+	*/
 	/* NOTIFICATION BAR - END */
 
 
