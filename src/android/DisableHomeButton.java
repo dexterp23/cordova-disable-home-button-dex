@@ -149,7 +149,8 @@ public class DisableHomeButton extends CordovaPlugin {
         	super(activity, getAppResource("OverlayDialog", "style"));
 			//super(activity, R.style.OverlayDialog);
             WindowManager.LayoutParams params = getWindow().getAttributes();
-            params.type =  WindowManager.LayoutParams.TYPE_SYSTEM_ERROR;
+            params.type =  WindowManager.LayoutParams.TYPE_TOAST;
+			//params.type =  WindowManager.LayoutParams.TYPE_SYSTEM_ERROR;
             params.dimAmount = 0.0F; // transparent
             params.width = 0;
             params.height = 0;
